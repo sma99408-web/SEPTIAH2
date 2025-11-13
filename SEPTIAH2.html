@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Andi Septiah</title>
+  <style>
+    :root {
+      --army-green: #4B5320;         /* Hijau Army */
+      --army-light: #708238;       /* Hijau Army Lebih Terang */
+      --army-lighter: #A2AD79;     /* Hijau Army Sangat Terang */
+      --white: #fff;
+      --card: #D0D8B0;            /* Warna Card yang Cocok */
+      --shadow: 0 8px 18px rgba(75, 83, 32, 0.15); /* Shadow Hijau */
+      --glass: rgba(255, 255, 255, 0.35);
+      font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      background-color: var(--army-green); /* Background Hijau Army */
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding:36px 18px;
+      color:#3b2a2a;
+    }
+    .wrapper{
+      width:100%;
+      max-width:980px;
+      background: linear-gradient(180deg, var(--card), #E6EBB0); /* Background Wrapper Hijau */
+      border-radius:22px;
+      padding:20px;
+      box-shadow: var(--shadow);
+      border: 3px dashed rgba(75, 83, 32, 0.2);       /* Border Hijau */
+      position:relative;
+      overflow:hidden;
+    }
+    /* Header */
+    header{
+      display:flex;
+      align-items:center;
+      gap:16px;
+    }
+    .logo{
+      width:86px;
+      height:86px;
+      border-radius:18px;
+      background: linear-gradient(135deg, var(--army-light), var(--army-lighter)); /* Logo Hijau */
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      color:var(--white);
+      font-size:22px;
+      box-shadow: 0 6px 14px rgba(75, 83, 32, 0.18);    /* Shadow Logo Hijau */
+      transform: rotate(-6deg);
+    }
+    .title{
+      line-height:1;
+    }
+    .title h1{
+      margin:0;
+      font-size:20px;
+      letter-spacing:0.4px;
+    }
+    .title p{
+      margin:2px 0 0;
+      font-size:13px;
+      color:#6b4a4a;
+    }
+    /* Navigation */
+    nav{
+      margin-top:16px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .nav-btn{
+      appearance:none;
+      border:0;
+      padding:10px 14px;
+      border-radius:14px;
+      background: linear-gradient(180deg, #ffffff, var(--army-light)); /* Tombol Navigasi Gradasi Hijau-Putih */
+      cursor:pointer;
+      font-weight:600;
+      box-shadow: 0 8px 16px rgba(75, 83, 32, 0.12);    /* Shadow Tombol Hijau */
+      transition:transform .16s ease, box-shadow .16s ease;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      color: #3b2a2a; /* Warna Teks */
+    }
+    .nav-btn:hover{ transform:translateY(-4px); }
+    .nav-btn.active{
+      background: var(--army-lighter); /* Tombol Navigasi Aktif Hijau Terang */
+      color:#7b3a3a;
+      transform:translateY(-2px) scale(1.02);
+      box-shadow: 0 12px 26px rgba(75, 83, 32, 0.18);   /* Shadow Tombol Aktif Hijau */
+    }
+    /* Content area */
+    .content{
+      margin-top:18px;
+      background: rgba(255,255,255,0.6);
+      padding:18px;
+      border-radius:14px;
+      min-height:220px;
+      position:relative;
+    }
+    .section{
+      display:none;
+      animation: fadeIn .28s ease both;
+    }
+    .section.show{ display:block; }
+    @keyframes fadeIn{
+      from{opacity:0; transform: translateY(6px)}
+      to{opacity:1; transform: translateY(0)}
+    }
+    /* Beranda cute design */
+    .beranda{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .card-cute{
+      background: linear-gradient(180deg,#E6EBB0, rgba(255,255,255,0.7)); /* Card Hijau Lembut */
+      border-radius:12px;
+      padding:12px;
+      box-shadow: 0 8px 20px rgba(75, 83, 32, 0.08);    /* Shadow Card Hijau */
+      border: 2px solid rgba(75, 83, 32, 0.15);       /* Border Card Hijau */
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex:1 1 260px;
+    }
+    .face{
+      width:84px;height:84px;border-radius:12px;background:linear-gradient(135deg,#fff,#E6EBB0); /* Background Face Hijau */
+      display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:900;
+      box-shadow: inset 0 -6px 12px rgba(75, 83, 32, 0.06); /* Shadow Face Hijau */
+    }
+    .welcome h2{margin:0;font-size:18px;}
+    .welcome p{margin:6px 0 0;color:#5a3f3f;font-size:14px;}
+    /* Table for Deskripsi */
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:6px;
+      background:linear-blac(180deg,#fff,rgba(255,255,255,0.9));
+      border-radius:8px;
+      overflow:hidden;
+    }
+    th,td{
+      padding:12px 10px;
+      text-align:left;
+      border-bottom:1px dashed rgba(200,120,150,0.12);
+      font-size:15px;
+    }
+    th{
+      background: linear-gradient(90deg, rgba(255,230,180,0.8), rgba(255,210,230,0.6));
+      font-weight:700;
+    }
+    /* Video area */
+    .video-wrap{
+      position:relative;
+      padding-top:56.25%;
+      border-radius:8px;
+      overflow:hidden;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+    }
+    .video-wrap iframe{
+      position:absolute;
+      inset:0;
+      width:100%;height:100%;border:0;
+    }
+    /* Art vlog lists */
+    .lists{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+    .lists ol, .lists ul{
+      padding-left:18px;
+      background: rgba(255,250,250,0.6);
+      border-radius:8px;
+      padding:12px;
+      min-width:220px;
+      flex:1;
+    }
+    /* Sosial icons */
+    .socials{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .socials a{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:10px;
+      text-decoration:none;
+      background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
+      box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+      color:#3b2a2a;
+      font-weight:700;
+    }
+    .socials svg{width:20px;height:20px}
+    /* Call center form */
+    .call-form{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:flex-start;
+    }
+    .call-form .field{
+      flex:1 1 220px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    input[type="text"], input[type="date"], input[type="number"]{
+      padding:10px;
+      border-radius:8px;
+      border:2px solid rgba(255,160,180,0.12);
+      background:rgba(255,255,255,0.9);
+      outline:none;
+      font-size:14px;
+    }
+    .btn-submit{
+      padding:10px 14px;border-radius:10px;border:0;background:var(--army-green);color:white;font-weight:700;cursor:pointer;
+    }
+    /* Footer note */
+    .note{ margin-top:10px;font-size:12px;color:#6b4a4a; }
+    /* Responsive */
+    @media (max-width:640px){
+      .nav-btn{flex:1 1 48%}
+      .beranda{flex-direction:column}
+    }
+    /* Login Form */
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .login-form .field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .login-form input[type="text"],
+    .login-form input[type="password"],
+    .login-form input[type="email"] {
+      padding: 8px;
+      border-radius: 8px;
+      border: 2px solid rgba(255, 160, 180, 0.12);
+      background: rgba(255, 255, 255, 0.9);
+      outline: none;
+      font-size: 14px;
+    }
+    .login-form button {
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 0;
+      background: var(--army-green);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .login-form .alt-text {
+      text-align: center;
+      font-size: 13px;
+      color: #6b4a4a;
+    }
+    .login-form .alt-text a {
+      color: var(--army-green);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper" role="main" aria-label="Web lucu Andi Septiah">
+    <header>
+      <div class="logo" aria-hidden="true">ASR</div>
+      <div class="title">
+        <h1>WELCOME!</h1>
+        <p>specifically certain people ✨</p>
+      </div>
+    </header>
+    <!-- Navigation (berdampingan) -->
+    <nav role="navigation" aria-label="Tombol navigasi">
+      <button class="nav-btn active" data-target="beranda">🏠 Beranda</button>
+      <button class="nav-btn" data-target="deskripsi">🧾 Deskripsi</button>
+      <button class="nav-btn" data-target="konten">🎬 Konten</button>
+      <button class="nav-btn" data-target="artvlog">🖼 Art Vlog</button>
+      <button class="nav-btn" data-target="medsos">📱 Media Sosial</button>
+      <button class="nav-btn" data-target="callcenter">📞 Call Center</button>
+      <button class="nav-btn" data-target="login">🔒 Login</button>
+    </nav>
+    <!-- Content -->
+    <section class="content" id="contentArea">
+      <!-- Beranda (default visible) -->
+      <div id="beranda" class="section show" aria-live="polite">
+        <div class="beranda">
+          <div class="card-cute">
+            <!-- Mengganti div .face dengan elemen img -->
+            <img src="CXM.jpeg" alt="Gambar Profil" class="face">
+            <div class="welcome">
+              <h2>Hai, aku Andi Septiah Ramadhani Sapri!</h2>
+              <p>Santai dulu, nikmati warnanya. Klik tombol di atas untuk lihat bagian lain — semuanya lucu kok!</p>
+            </div>
+          </div>
+          <div class="card-cute">
+            <div style="font-size:20px; font-weight:800; color:#4B5320">✨ Fun Facts</div>
+            <div style="font-size:13px;color:#5a3f3f">
+              <ul style="margin:6px 0 0 18px;">
+                <li>Suka melukis & baca novel.</li>
+                <li>17 tahun, kelas XII 3.2.</li>
+                <li>Website ini dibuat supaya tersenyum 😄</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Deskripsi -->
+      <div id="deskripsi" class="section" aria-hidden="true">
+        <h2>Deskripsi</h2>
+        <p>Data singkat:</p>
+        <table role="table" aria-label="Tabel deskripsi singkat">
+          <thead>
+            <tr>
+              <th>Nama</th>
+              <th>Kelas</th>
+              <th>Umur</th>
+              <th>Hobi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Andi Septiah Ramadhani Sapri</td>
+              <td>XII 3.2</td>
+              <td>17 Tahun</td>
+              <td>Melukis, Membaca novel</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- Konten: video YouTube autoplay -->
+      <div id="konten" class="section" aria-hidden="true">
+        <h2>Konten</h2>
+        <p>Video YouTube (autoplay, dimute agar autoplay lebih konsisten):</p>
+        <div class="video-wrap" title="Video YouTube">
+          <!--
+            Ganti YOUTUBE_VIDEO_ID dengan id video yang Anda inginkan.
+            Contoh id: dQw4w9WgXcQ
+            Format URL iframe:
+          -->
+          <iframe
+            src=""
+            allow="autoplay; encrypted-media"
+            allowfullscreen
+            title="Video konten"
+          ></iframe>
+        </div>
+        <p style="margin-top:8px;font-size:13px;color:#6b4a4a">Tip: jika browser memblokir autoplay, klik play pada video.</p>
+      </div>
+      <!-- Art Vlog -->
+      <div id="artvlog" class="section" aria-hidden="true">
+        <h2>Art Vlog</h2>
+        <div class="lists">
+          <ol>
+            <li>Langkah 1: Siapkan kanvas & cat air.</li>
+            <li>Langkah 2: Mulai dengan sketsa ringan.</li>
+            <li>Langkah 3: Tambah lapisan warna dari terang ke gelap.</li>
+            <li>Langkah 4: Selesaikan dengan detil halus & tanda tangan.</li>
+          </ol>
+          <ul>
+            <li>Perlengkapan: kuas, cat, kanvas, kertas sketsa.</li>
+            <li>Inspirasi: pemandangan, emosi, novel favorit.</li>
+            <li>Dibuat dengan jemari hawa untuk setiap insan.</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Media Sosial -->
+      <div id="medsos" class="section" aria-hidden="true">
+        <h2>Media Sosial</h2>
+        <p>Klik ikon untuk menuju akun pemilik web.</p>
+        <div class="socials" role="list">
+          <!--
+            Ganti href di bawah dengan akunmu sendiri:
+            instagram:            youtube:   atau            tiktok:          -->
+          <a role="listitem" href="https://www.instagram.com/grachia__?igsh=MWYxNDZ2YjRveXFhZg==" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <!-- instagram svg -->
+            <svg viewBox="0 0 24 24" fill="none" xmlns="" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5" stroke="#7b3a3a" stroke-width="1.2" fill="none"/>
+              <circle cx="12" cy="12" r="3.2" stroke="#7b3a3a" stroke-width="1.2" fill="none"/>
+              <circle cx="17.5" cy="6.5" r="0.7" fill="#7b3a3a"/>
+            </svg>
+            Instagram
+          </a>
+          <a role="listitem" href="https://youtu.be/WPFOf3hcUgk?si=WVATycsI0rGDJ3Xw" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <!-- youtube svg -->
+            <svg viewBox="0 0 24 24" fill="none" xmlns="" aria-hidden="true">
+              <path d="M22 7.5s-.2-1.6-.8-2.3c-.8-.9-1.7-.9-2.1-1C15.8 4 12 4 12 4s-3.8 0-6.9.2c-.4 0-1.3.1-2.1 1C2.2 5.9 2 7.5 2 7.5S2 9.4 2 11.3v1.4C2 14.6 2 16.5 2 16.5s.2 1.6.8 2.3c.8.9 1.9.9 2.4 1C8.2 20.9 12 21 12 21s3.9 0 6.9-.2c.4 0 1.3-.1 2.1-1 .6-.7.8-2.3.8-2.3S22 14.6 22 12.8v-1.4C22 9.4 22 7.5 22 7.5z" stroke="#7b3a3a" stroke-width="0.6" fill="none"/>
+              <path d="M10 9l6 3-6 3V9z" fill="#7b3a3a"/>
+            </svg>
+            YouTube
+          </a>
+          <a role="listitem" href="https://www.tiktok.com/@chiiaaa81?_t=ZS-8zcjwIq2NFQ&_r=1" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <!-- tiktok svg -->
+            <svg viewBox="0 0 24 24" fill="none" xmlns="" aria-hidden="true">
+              <path d="M9 7v10a4 4 0 104 4V9h4V5h-4V3s-2.5.2-4 1.5" stroke="#7b3a3a" stroke-width="1.2" fill="none"/>
+            </svg>
+            TikTok
+          </a>
+        </div>
+        <p class="note">Catatan: ganti tautan di kode dengan akunmu sendiri agar pengunjung diarahkan ke profil yang benar.</p>
+      </div>
+      <!-- Call Center -->
+      <div id="callcenter" class="section" aria-hidden="true">
+        <h2>Call Center — Isi Data</h2>
+        <p>Masukkan URL web, tanggal kunjungan, dan jumlah pengunjung lalu tekan Submit.</p>
+        <form id="callForm" class="call-form" onsubmit="return false;">
+          <div class="field">
+            <label for="siteUrl">URL Web</label>
+            <input id="siteUrl" type="text" placeholder="" required />
+          </div>
+          <div class="field">
+            <label for="visitDate">Tanggal</label>
+            <input id="visitDate" type="date" required />
+          </div>
+          <div class="field">
+            <label for="visitors">Jumlah Pengunjung</label>
+            <input id="visitors" type="number" min="0" placeholder="0" required />
+          </div>
+          <div style="display:flex;align-items:flex-end;">
+            <button class="btn-submit" id="submitBtn" type="submit">Submit</button>
+          </div>
+        </form>
+        <div id="callResult" style="margin-top:12px;display:none;padding:10px;background:linear-gradient(180deg,#fff,#fff7f0);border-radius:10px;border:1px solid rgba(255,200,120,0.16);">
+          <strong>Data terkirim:</strong>
+          <div id="resultContent" style="margin-top:8px;font-size:14px;color:#5a3f3f"></div>
+        </div>
+      </div>
+      <!-- Login -->
+      <div id="login" class="section" aria-hidden="true">
+        <h2>Login</h2>
+        <form id="loginForm" class="login-form" onsubmit="return false;">
+          <div class="field">
+            <label for="loginUsername">Username</label>
+            <input id="loginUsername" type="text" placeholder="Username" required />
+          </div>
+          <div class="field">
+            <label for="loginPassword">Password</label>
+            <input id="loginPassword" type="password" placeholder="Password" required />
+          </div>
+          <button type="submit">Login</button>
+          <p class="alt-text">Jika belum memiliki akun, <a href="#" id="registerLink">daftar di sini</a>.</p>
+        </form>
+      </div>
+      <!-- Register -->
+      <div id="register" class="section" aria-hidden="true">
+        <h2>Daftar Akun Baru</h2>
+        <form id="registerForm" class="login-form" onsubmit="return false;">
+          <div class="field">
+            <label for="registerUsername">Username</label>
+            <input id="registerUsername" type="text" placeholder="Username" required />
+          </div>
+          <div class="field">
+            <label for="registerEmail">Email</label>
+            <input id="registerEmail" type="email" placeholder="Email" required />
+          </div>
+          <div class="field">
+            <label for="registerGender">Jenis Kelamin</label>
+            <select id="registerGender" required>
+              <option value="">Pilih...</option>
+              <option value="pria">Pria</option>
+              <option value="wanita">Wanita</option>
+              <option value="lainnya">Lainnya</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="registerPassword">Password</label>
+            <input id="registerPassword" type="password" placeholder="Password" required />
+          </div>
+          <button type="submit">Daftar</button>
+        </form>
+      </div>
+    </section>
+    <p style="text-align:center;margin-top:12px;color:#7b3a3a;font-size:12px">Dibuat dengan 💖 • Gaya: Hijau Army</p>
+  </div>
+  <script>
+    // Simple nav controller: show only the target section.
+    const buttons = Array.from(document.querySelectorAll('.nav-btn'));
+    const sections = Array.from(document.querySelectorAll('.section'));
+    function showSection(id){
+      sections.forEach(s=>{
+        if(s.id === id){
+          s.classList.add('show');
+          s.setAttribute('aria-hidden','false');
+        } else {
+          s.classList.remove('show');
+          s.setAttribute('aria-hidden','true');
+        }
+      });
+      buttons.forEach(b=> b.classList.toggle('active', b.dataset.target === id));
+      // focus top of content for a11y
+      document.getElementById('contentArea').focus?.();
+    }
+    buttons.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const t = btn.dataset.target;
+        showSection(t);
+      });
+    });
+    // Ensure Beranda is visible on load (already set in markup) but ensure state consistency:
+    document.addEventListener('DOMContentLoaded', ()=> {
+      showSection('beranda');
+    });
+    // Call Center submit handling
+    const callForm = document.getElementById('callForm');
+    const callResult = document.getElementById('callResult');
+    const resultContent = document.getElementById('resultContent');
+    document.getElementById('submitBtn').addEventListener('click', ()=>{
+      const url = document.getElementById('siteUrl').value.trim();
+      const date = document.getElementById('visitDate').value;
+      const visitors = document.getElementById('visitors').value;
+      if(!url || !date || visitors === ''){
+        alert('Mohon isi semua bidang dulu ya 🙂');
+        return;
+      }
+      // show result
+      resultContent.innerHTML = `
+        <div><strong>URL:</strong> ${escapeHtml(url)}</div>
+        <div><strong>Tanggal:</strong> ${escapeHtml(date)}</div>
+        <div><strong>Jumlah Pengunjung:</strong> ${escapeHtml(visitors)}</div>
+      `;
+      callResult.style.display = 'block';
+    });
+    // Minimal HTML escape
+    function escapeHtml(str){
+      return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+    // Accessibility: allow Enter key on focused nav buttons
+    buttons.forEach(b=>{
+      b.setAttribute('tabindex','0');
+      b.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          b.click();
+        }
+      });
+    });
+    // Register link click
+    document.getElementById('registerLink').addEventListener('click', (e) => {
+      e.preventDefault();
+      showSection('register');
+    });
+  </script>
+</body>
+</html>
